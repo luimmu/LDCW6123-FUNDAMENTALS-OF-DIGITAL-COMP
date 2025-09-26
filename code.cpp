@@ -67,3 +67,38 @@ int main() {
             chosenPrices.push_back(catalog[productChoice - 1].price * quantity);
         }
 
+        // Subtotal
+        double subtotal = 0.0;
+        for (double p : chosenPrices) subtotal += p;
+
+        cout << "\nSubtotal: RM" << subtotal << endl;
+
+        // Offer to add more goods
+        char addMore;
+        while (subtotal < 100) {
+            cout << "Your subtotal is below RM100. Do you want to add more items for free shipping? (Y/N): ";
+            cin >> addMore;
+            if (addMore == 'Y' || addMore == 'y') {
+                int productChoice, quantity;
+                cout << "Select extra product (1-15): ";
+                while (!(cin >> productChoice) || productChoice < 1 || productChoice > 15) {
+                    cout << "Invalid input! Please select between 1 and 15: ";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+                cout << "Enter quantity for " << catalog[productChoice - 1].name << ": ";
+                while (!(cin >> quantity) || quantity <= 0) {
+                    cout << "Invalid input! Please enter a positive quantity: ";
+                    cin.clear();
+                    cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                }
+
+                chosenNames.push_back(catalog[productChoice - 1].name + " x" + to_string(quantity));
+                chosenPrices.push_back(catalog[productChoice - 1].price * quantity);
+                subtotal += catalog[productChoice - 1].price * quantity;
+
+                cout << "New Subtotal: RM" << subtotal << endl;
+            } else break;
+        }
+
