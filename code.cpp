@@ -27,3 +27,43 @@ int main() {
         cout << "       Welcome to E-Commerce Cart" << endl;
         cout << "======================================" << endl;
 
+        // Display product catalog
+        cout << "\nAvailable Products:\n";
+        cout << "--------------------------------------" << endl;
+        for (size_t i = 0; i < catalog.size(); i++) {
+            cout << setw(2) << i + 1 << ". " << left << setw(20) << catalog[i].name
+                 << " RM " << right << fixed << setprecision(2) << setw(8) << catalog[i].price << endl;
+        }
+        cout << "--------------------------------------" << endl;
+
+        int numItems;
+        cout << "Enter number of different products to buy: ";
+        while (!(cin >> numItems) || numItems <= 0) {
+            cout << "Invalid input! Please enter a positive integer: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+
+        vector<string> chosenNames;
+        vector<double> chosenPrices;
+
+        for (int i = 0; i < numItems; i++) {
+            int productChoice, quantity;
+            cout << "Select product #" << (i + 1) << " (1-15): ";
+            while (!(cin >> productChoice) || productChoice < 1 || productChoice > 15) {
+                cout << "Invalid input! Please select between 1 and 15: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            cout << "Enter quantity for " << catalog[productChoice - 1].name << ": ";
+            while (!(cin >> quantity) || quantity <= 0) {
+                cout << "Invalid input! Please enter a positive quantity: ";
+                cin.clear();
+                cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            }
+
+            chosenNames.push_back(catalog[productChoice - 1].name + " x" + to_string(quantity));
+            chosenPrices.push_back(catalog[productChoice - 1].price * quantity);
+        }
+
