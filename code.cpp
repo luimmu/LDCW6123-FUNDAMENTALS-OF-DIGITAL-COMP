@@ -21,4 +21,9 @@ int main() {
         {"Water Bottle", 30.00}, {"Sunglasses", 70.00}, {"Perfume", 250.00}
     };
 
-}
+    // Main Menu UI
+    do {
+        cout << "======================================" << endl;
+        cout << "       Welcome to E-Commerce Cart" << endl;
+        cout << "======================================" << endl;
+
