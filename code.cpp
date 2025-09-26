@@ -102,3 +102,19 @@ int main() {
             } else break;
         }
 
+        // Discount code
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        string discountCode;
+        cout << "Enter discount code (SAVE10, DISC20, FREESHIP, or press Enter to skip): ";
+        getline(cin, discountCode);
+
+        double discount = 0.0;
+        bool freeShipping = false;
+
+        if (discountCode == "SAVE10") discount = 10.0;
+        else if (discountCode == "DISC20") discount = subtotal * 0.20;
+        else if (discountCode == "FREESHIP") freeShipping = true;
+
+        double discountedTotal = subtotal - discount;
+        if (discountedTotal < 0) discountedTotal = 0;
+
