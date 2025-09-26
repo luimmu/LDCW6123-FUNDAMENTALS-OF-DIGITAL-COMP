@@ -124,3 +124,14 @@ int main() {
         double shippingFee = (totalWithTax < 100 && !freeShipping) ? 5.0 : 0.0;
         double finalTotal = totalWithTax + shippingFee;
 
+        // Payment Method
+        int paymentChoice;
+        cout << "\nSelect Payment Method:\n1. Cash on Delivery\n2. Online Banking\n3. E-Wallet\nEnter choice (1-3): ";
+        while (!(cin >> paymentChoice) || paymentChoice < 1 || paymentChoice > 3) {
+            cout << "Invalid input! Please select 1, 2, or 3: ";
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+        }
+        string paymentMethod = (paymentChoice == 1 ? "Cash on Delivery" :
+                               paymentChoice == 2 ? "Online Banking" : "E-Wallet");
+
