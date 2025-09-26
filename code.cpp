@@ -118,3 +118,9 @@ int main() {
         double discountedTotal = subtotal - discount;
         if (discountedTotal < 0) discountedTotal = 0;
 
+        // Tax + Shipping
+        double tax = discountedTotal * 0.06;
+        double totalWithTax = discountedTotal + tax;
+        double shippingFee = (totalWithTax < 100 && !freeShipping) ? 5.0 : 0.0;
+        double finalTotal = totalWithTax + shippingFee;
+
