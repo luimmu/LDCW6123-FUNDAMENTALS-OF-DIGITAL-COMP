@@ -135,3 +135,35 @@ int main() {
         string paymentMethod = (paymentChoice == 1 ? "Cash on Delivery" :
                                paymentChoice == 2 ? "Online Banking" : "E-Wallet");
 
+        // Print receipt
+        cout << fixed << setprecision(2);
+        cout << "\n===============================" << endl;
+        cout << "         ORDER RECEIPT" << endl;
+        cout << "===============================" << endl;
+        for (size_t i = 0; i < chosenNames.size(); i++) {
+            cout << left << setw(20) << chosenNames[i]
+                 << " RM " << right << setw(8) << chosenPrices[i] << endl;
+        }
+        cout << "-------------------------------" << endl;
+        cout << left << setw(20) << "Subtotal:" << " RM " << right << setw(8) << subtotal << endl;
+        cout << left << setw(20) << "Discount:" << " RM " << right << setw(8) << -discount << endl;
+        cout << left << setw(20) << "SST (6%):" << " RM " << right << setw(8) << tax << endl;
+        cout << left << setw(20) << "Shipping:" << " RM " << right << setw(8) << shippingFee;
+        if (shippingFee == 0) cout << " (Free shipping > RM100)";
+        cout << endl;
+        cout << "-------------------------------" << endl;
+        cout << left << setw(20) << "Final Total:" << " RM " << right << setw(8) << finalTotal << endl;
+        cout << left << setw(20) << "Payment Method:" << paymentMethod << endl;
+        cout << "===============================" << endl;
+        cout << "Thank you for shopping with us!" << endl;
+        cout << "===============================\n" << endl;
+
+        cout << "Do you want to shop again? (Y/N): ";
+        cin >> choice;
+        cin.ignore(numeric_limits<streamsize>::max(), '\n');
+
+    } while (choice == 'Y' || choice == 'y');
+
+    cout << "Goodbye! Thank you for using our E-Commerce Cart." << endl;
+    return 0;
+}
